@@ -4,8 +4,6 @@
     margin: 0 auto;
   }
   
-  
-  
   .main__wrapper {
     display: grid;
     grid-template-columns: 2fr 10fr;
