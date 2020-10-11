@@ -1,5 +1,5 @@
 import React from "react";
-import ContentHeader from './Header'
+import ContentHeader from './ContentHeader'
 
 const Profile = () => {
   return (
