@@ -1,12 +1,16 @@
 .wrapper {
-    max-width: 128rem;
-    padding: 4rem;
-    margin: 0 auto;
-  }
-  
-  .main__wrapper {
-    display: grid;
-    grid-template-columns: 2fr 10fr;
-    grid-template-areas: "sidebar content";
-  
-  }
+  max-width: 128rem;
+  padding: 0 4rem;
+  margin: 0 auto;
+}
+
+.main__wrapper {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  grid-template-areas: "sidebar content";
+}
+.content {
+  grid-area: content;
+  background-color: #fff;
+  padding: 5.5rem 8rem;
+}

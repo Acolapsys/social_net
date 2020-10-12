@@ -28,3 +28,6 @@
   font-style: normal;
   font-weight: bold;
 }
+.active {
+  color: rgb(216, 120, 219)
+}

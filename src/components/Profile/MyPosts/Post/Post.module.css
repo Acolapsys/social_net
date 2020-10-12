@@ -4,8 +4,8 @@
   font-size: 1.6rem;
   line-height: 3.5rem;
   padding: 1.6rem 1.8rem;
-  display: flex;
-  align-items: center;
+  /* display: flex;
+  align-items: center; */
   color: #414141;
   font-weight: 700;
 }
@@ -17,5 +17,5 @@
   border-radius: 50%;
 }
 .countLikes {
-  padding-left: 5rem;
+  /* padding-left: 5rem; */
 }
