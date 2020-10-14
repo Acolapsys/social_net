@@ -1,5 +1,41 @@
 .dialogs {
-    font-size: 2rem;
-    padding: 4rem;
-  
+  font-size: 2rem;
+  padding: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 2rem;
+  grid-template-areas:
+    "title title"
+    "dialogs messages";
+}
+.dialogsTitle {
+  grid-area: title;
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  color: #858585;
+}
+
+.dialogsItems {
+  grid-area: dialogs;
+  background: #FFFFFF;
+  border: 2px solid #F0F0F0;
+  border-radius: 1rem 0 0 1rem;
+  padding: 3rem;
+}
+.dialogsItems .active {
+  color: rgb(22, 122, 126);
+}
+
+.dialog {
+  padding: 1.5rem 0;
+}
+
+.messages {
+  grid-area: messages;
+}
+
+.message {
 }

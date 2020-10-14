@@ -5,7 +5,6 @@ import { NavLink } from "react-router-dom";
 const Sidebar = () => {
   return (
     <aside className={styles.sidebar}>
-      <div className={styles.sidebar__logo}>Social Net</div>
       <nav className={styles.sidebar__nav}>
         <ul className={styles.sidebar__menu}>
           <li className={styles.sidebar__item}>

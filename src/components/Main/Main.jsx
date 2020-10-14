@@ -15,7 +15,7 @@ const Main = () => {
         <div className={styles.wrapper}>
           <div className={styles.main__wrapper}>
             <Sidebar />
-            <div className="content">
+            <div className={styles.content}>
               <Route path='/profile' component={Profile} />
               <Route path='/dialogs' component={Dialogs} />
               <Route path='/news' component={News} />
