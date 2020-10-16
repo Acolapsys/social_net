@@ -25,23 +25,9 @@
   border-radius: 1rem 0 0 1rem;
   padding: 3rem;
 }
-.dialogsItems .active {
-  color: rgb(22, 122, 126);
-}
 
-.dialog {
-  padding: 1.5rem 0;
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 12px;
-  line-height: 2.4rem;
-  color: #858585;
-}
 
 .messages {
   grid-area: messages;
 }
 
-.message {
-}

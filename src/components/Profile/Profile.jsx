@@ -1,13 +1,13 @@
 import React from "react";
 import MyPosts from "./MyPosts/MyPosts";
 import styles from './Profile.module.css'
+import ProfileInfo from './ProfileInfo/ProfileInfo'
 
 const Profile = () => {
   return (
     <div className={styles.profile}>
 
-      <div className={styles.content__banner}></div>
-      <div className={styles.content__info}>ava + info</div>
+      <ProfileInfo />
       <MyPosts />
     </div>
   );
