@@ -1,40 +1,43 @@
-import React from "react";
+import React, { Component } from "react";
 import styles from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 
-const Dialogs = () => {
-  const dialogsData = [
-    { id: 1, name: "Michael" },
-    { id: 2, name: "Den" },
-    { id: 3, name: "Devil Master" },
-    { id: 4, name: "Sun Puppy" },
-    { id: 5, name: "Bro" },
-    { id: 6, name: "Best Hacker" },
-    { id: 7, name: "New Age" },
-    { id: 8, name: "Bob" },
-  ];
-  const messagesData = [
-    { id: 1, message: "How r u?" },
-    { id: 2, message: "Fine, and you?" },
-    { id: 3, message: "I'm best" },
-    { id: 4, message: "Be happy" },
-  ];
-  return (
-    <div className={styles.dialogs}>
-      <h2 className={styles.dialogsTitle}>Dialogs</h2>
-      <div className={styles.dialogsItems}>
-        {dialogsData.map((dialog) => (
-          <DialogItem name={dialog.name} id={dialog.id} />
-        ))}
+class Dialogs extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      newMessage: ''
+    }
+  }
+  newMessageElement = React.createRef();
+  addMessage = () => {
+    const text  = this.newMessageElement.current.value;
+    alert(text);
+    
+
+  }
+  render() {
+    return (
+      <div className={styles.dialogs}>
+        <h2 className={styles.dialogsTitle}>Dialogs</h2>
+        <div className={styles.dialogsItems}>
+          {this.props.state.dialogsData.map((dialog) => (
+            <DialogItem name={dialog.name} id={dialog.id} />
+          ))}
+        </div>
+        <div className={styles.messages}>
+          {this.props.state.messagesData.map((el) => (
+            <Message message={el.message} id={el.id} />
+          ))}
+        </div>
+        <div className={styles.addMessage}>
+          <textarea name="newMessage" id="newMessage" cols="30" rows="3" ref={this.newMessageElement}></textarea>
+          <button onClick={this.addMessage}>New message</button>
+        </div>
       </div>
-      <div className={styles.messages}>
-        {messagesData.map((el) => (
-          <Message message={el.message} id={el.id} />
-        ))}
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Dialogs;
