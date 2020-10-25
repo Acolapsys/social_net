@@ -6,18 +6,16 @@ class MyPosts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      newPost: ''
     }
   }
   newPostElement = React.createRef();
   addPost = () => {
-    const text = this.newPostElement.current.value;
-    alert(text)
+    this.props.addPost();
     
-
   }
-  onPostInput = (e) => {
-    this.setState({newPost: e.target.value})
+  changePostText = () => {
+    let text = this.newPostElement.current.value;
+    this.props.updateNewPostText(text)
   }
   render() {
     return (
@@ -26,7 +24,7 @@ class MyPosts extends Component {
           <h2 className={styles.content__title}> My posts </h2>
           <div className={styles.content__newpost}>
             <div>
-              <textarea name="newPost" id="newPost" cols="30" rows="3" ref={this.newPostElement}/>
+              <textarea onChange={this.changePostText} name="newPost" id="newPost" cols="30" rows="3" ref={this.newPostElement} value={this.props.newPostText}/>
             </div>
             <div>
               <button onClick={this.addPost}>Add post</button>

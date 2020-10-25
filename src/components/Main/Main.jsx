@@ -9,6 +9,7 @@ import Settings from "../Settings/Settings";
 import { Route, BrowserRouter } from "react-router-dom";
 
 class Main extends Component {
+  
   render() {
     return (
       <BrowserRouter>
@@ -19,7 +20,7 @@ class Main extends Component {
               <div className={styles.content}>
                 <Route
                   path="/profile"
-                  render={() => <Profile state={this.props.state.profilePage} />}
+                  render={() => <Profile profilePage={this.props.state.profilePage} addPost={this.props.addPost} updateNewPostText={this.props.updateNewPostText}/>}
                 />
                 <Route
                   path="/dialogs"
