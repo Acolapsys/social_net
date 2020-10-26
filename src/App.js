@@ -14,7 +14,7 @@ class App extends Component {
       <div className={styles.App}>
         <Header />
         
-        <Main state={this.props.state} addPost={this.props.addPost} updateNewPostText={this.props.updateNewPostText}/>
+        <Main state={this.props.state} dispatch={this.props.dispatch}/>
         <Footer />
       </div>
     );

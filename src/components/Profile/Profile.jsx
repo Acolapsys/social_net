@@ -12,8 +12,7 @@ class Profile extends Component {
         <MyPosts
           postData={this.props.profilePage.postData}
           newPostText={this.props.profilePage.newPostText}
-          addPost={this.props.addPost}
-          updateNewPostText={this.props.updateNewPostText}
+          dispatch={this.props.dispatch}
         />
       </div>
     );

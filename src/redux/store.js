@@ -1,3 +1,6 @@
+import profileReducer from './reducers/profileReducer'
+import dialogsReducer from './reducers/dialogsReducer'
+import sidebarReducer from './reducers/sidebarReducer'
 
 
 
@@ -19,7 +22,8 @@ const store = {
                 { id: 2, message: "Fine, and you?" },
                 { id: 3, message: "I'm best" },
                 { id: 4, message: "Be happy" },
-            ]
+            ],
+            newMessageBody: ""
         },
         profilePage: {
             postData: [
@@ -36,22 +40,6 @@ const store = {
         console.log('State was changed')
     },
 
-    addPost() {
-        let newPost = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            countLikes: 0
-        }
-        this._state.profilePage.postData.push(newPost)
-        this.updateNewPostText('')
-        this._callSubscriber(this._state);
-
-    },
-    updateNewPostText(newText) {
-        this._state.profilePage.newPostText = newText
-        this._callSubscriber(this._state);
-
-    },
     subscribe(observer) {
         this._callSubscriber = observer;
 
@@ -62,7 +50,17 @@ const store = {
     setState(state) {
         this._state = state
 
+    },
+    dispatch(action) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+        this._callSubscriber(this._state);
+
     }
 
 }
+
+
+
 export default store;
