@@ -1,21 +1,17 @@
 import React, { Component } from "react";
 import styles from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/reducers/profileReducer"
+
 
 class MyPosts extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+
 
   
   addPost = () => {
-    this.props.dispatch(addPostActionCreator());
+    this.props.addPost();
   };
   changePostText = (e) => {
-    let text = e.target.value;
-    this.props.dispatch(updateNewPostTextActionCreator(text));
+    this.props.changePostText(e.target.value);
   };
   render() {
     return (

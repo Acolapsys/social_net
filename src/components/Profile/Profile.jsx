@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import MyPosts from "./MyPosts/MyPosts";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import styles from "./Profile.module.css";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
@@ -9,9 +9,8 @@ class Profile extends Component {
     return (
       <div className={styles.profile}>
         <ProfileInfo />
-        <MyPosts
-          postData={this.props.profilePage.postData}
-          newPostText={this.props.profilePage.newPostText}
+        <MyPostsContainer
+          state={this.props.state}
           dispatch={this.props.dispatch}
         />
       </div>

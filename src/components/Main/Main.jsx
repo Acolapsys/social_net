@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import Profile from "../Profile/Profile";
 import styles from "./Main.module.css";
-import Dialogs from "../Dialogs/Dialogs";
+import DialogsContainer from "../Dialogs/DialogsContainer";
 import News from "../News/News";
 import Music from "../Music/Music";
 import Settings from "../Settings/Settings";
@@ -21,7 +21,7 @@ class Main extends Component {
                   path="/profile"
                   render={() => (
                     <Profile
-                      profilePage={this.props.state.profilePage}
+                      state={this.props.state}
                       dispatch={this.props.dispatch}
                     />
                   )}
@@ -29,8 +29,8 @@ class Main extends Component {
                 <Route
                   path="/dialogs"
                   render={() => (
-                    <Dialogs
-                      dialogsPage={this.props.state.dialogsPage}
+                    <DialogsContainer
+                      state={this.props.state}
                       dispatch={this.props.dispatch}
                     />
                   )}
