@@ -9,10 +9,7 @@ class Profile extends Component {
     return (
       <div className={styles.profile}>
         <ProfileInfo />
-        <MyPostsContainer
-          state={this.props.state}
-          dispatch={this.props.dispatch}
-        />
+        <MyPostsContainer/>
       </div>
     );
   }

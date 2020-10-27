@@ -3,22 +3,30 @@ import {
   sendMessageActionCreator,
   updateNewMessageBodyActionCreator,
 } from "../../redux/reducers/dialogsReducer";
-import Dialogs from './Dialogs'
+import StoreContext from "../../StoreContext";
+import Dialogs from "./Dialogs";
 
 class DialogsContainer extends Component {
-  addMessage = () => {
-    this.props.dispatch(sendMessageActionCreator());
-  };
-  updateMessageBody = (text) => {
-    this.props.dispatch(updateNewMessageBodyActionCreator(text));
-  };
-  
-
   render() {
-    debugger
-    
     return (
-      <Dialogs updateMessageBody={this.updateMessageBody} addMessage={this.addMessage} dialogsPage={this.props.state.dialogsPage}/>
+      <StoreContext.Consumer>
+        {(store) => {
+          let state = store.getState();
+          const addMessage = () => {
+            store.dispatch(sendMessageActionCreator());
+          };
+          const updateMessageBody = (text) => {
+            store.dispatch(updateNewMessageBodyActionCreator(text));
+          };
+          return (
+            <Dialogs
+              updateMessageBody={updateMessageBody}
+              addMessage={addMessage}
+              dialogsPage={state.dialogsPage}
+            />
+          );
+        }}
+      </StoreContext.Consumer>
     );
   }
 }

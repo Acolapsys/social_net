@@ -13,7 +13,6 @@ class Dialogs extends Component {
   };
 
   render() {
-    debugger;
     return (
       <div className={styles.dialogs}>
         <h2 className={styles.dialogsTitle}>Dialogs</h2>
