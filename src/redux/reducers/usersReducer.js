@@ -3,6 +3,8 @@ const UNFOLLOW = "UNFOLLOW"
 const SHOW_MORE = "SHOW-MORE"
 const SET_USERS = "SET-USERS"
 
+
+
 const initialState = {
     users: [
         // { id: 1, avatarUrl: 'https://i.pinimg.com/originals/8a/34/48/8a3448467d01b7bcf1eb713b452766f2.jpg', followed: false, fullName: "Admin", status: 'On the wave', location: { city: 'Chusovoy', country: 'Russia' } },
