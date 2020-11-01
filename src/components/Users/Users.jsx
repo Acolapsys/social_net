@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { ListItemSecondaryAction } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
-import * as axios from "axios";
+import Pagination from '@material-ui/lab/Pagination';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     margin: theme.spacing(4, 0, 2),
+    fontSize: "3rem"
   },
   ListItemAvatar: {
     flexDirection: "column",
@@ -33,25 +34,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// props.setUsers([
-//   { id: 1, avatarUrl: 'https://i.pinimg.com/originals/8a/34/48/8a3448467d01b7bcf1eb713b452766f2.jpg', followed: false, fullName: "Admin", status: 'On the wave', location: { city: 'Chusovoy', country: 'Russia' } },
-//   { id: 2, avatarUrl: 'https://i.pinimg.com/originals/8a/34/48/8a3448467d01b7bcf1eb713b452766f2.jpg', followed: false, fullName: "Eleonora", status: 'I am stylist', location: { city: 'Chusovoy', country: 'Russia' } },
-//   { id: 3, avatarUrl: 'https://i.pinimg.com/originals/8a/34/48/8a3448467d01b7bcf1eb713b452766f2.jpg', followed: true, fullName: "Dmitry", status: 'Boom Boom', location: { city: 'Moscow', country: 'Russia' } },
-//   { id: 4, avatarUrl: 'https://i.pinimg.com/originals/8a/34/48/8a3448467d01b7bcf1eb713b452766f2.jpg', followed: false, fullName: "Alexey", status: 'Reading manual', location: { city: 'Sochi', country: 'Russia' } },
-//   { id: 5, avatarUrl: 'https://i.pinimg.com/originals/8a/34/48/8a3448467d01b7bcf1eb713b452766f2.jpg', followed: true, fullName: "Sergey", status: 'Coding', location: { city: 'New York', country: 'USA' } },
-// ])}
 
-const usersUrlAPI = "https://social-net-react-api.firebaseio.com/users.json";
+
+
+
 
 const Users = (props) => {
   const classes = useStyles();
-  useEffect(() => {
-    if (props.users.length === 0) {
-      axios.get(usersUrlAPI).then((response) => {
-        props.setUsers(response.data.items);
-      });
-    }
-  }, []);
+  
+  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
   return (
     <div className={classes.root}>
@@ -59,12 +50,13 @@ const Users = (props) => {
         <Typography variant="h6" className={classes.title}>
           Users
         </Typography>
+        <Pagination count={pagesCount} page={props.currentPage} variant="outlined" onChange={props.onPageChanged}/>
         <div className={classes.demo}>
           <List>
             {props.users.map((el) => (
               <ListItem key={el.id} divider={true}>
                 <ListItemAvatar className={classes.ListItemAvatar}>
-                  <Avatar src={el.avatarUrl || null}></Avatar>
+                  <Avatar src={el.photos.small || null}></Avatar>
 
                   <Button
                     variant="outlined"
