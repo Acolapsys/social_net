@@ -3,19 +3,15 @@ const UNFOLLOW = "UNFOLLOW"
 const SHOW_MORE = "SHOW-MORE"
 const SET_USERS = "SET-USERS"
 const SET_CURRENT_PAGE = "SET-CURRENT-PAGE"
+const TOGGLE_IS_FETCHING = "TOGGLE-IS-FETCHING"
 
 
 const initialState = {
-    users: [
-        // { id: 1, avatarUrl: 'https://i.pinimg.com/originals/8a/34/48/8a3448467d01b7bcf1eb713b452766f2.jpg', followed: false, fullName: "Admin", status: 'On the wave', location: { city: 'Chusovoy', country: 'Russia' } },
-        // { id: 2, avatarUrl: 'https://i.pinimg.com/originals/8a/34/48/8a3448467d01b7bcf1eb713b452766f2.jpg', followed: false, fullName: "Eleonora", status: 'I am stylist', location: { city: 'Chusovoy', country: 'Russia' } },
-        // { id: 3, avatarUrl: 'https://i.pinimg.com/originals/8a/34/48/8a3448467d01b7bcf1eb713b452766f2.jpg', followed: true, fullName: "Dmitry", status: 'Boom Boom', location: { city: 'Moscow', country: 'Russia' } },
-        // { id: 4, avatarUrl: 'https://i.pinimg.com/originals/8a/34/48/8a3448467d01b7bcf1eb713b452766f2.jpg', followed: false, fullName: "Alexey", status: 'Reading manual', location: { city: 'Sochi', country: 'Russia' } },
-        // { id: 5, avatarUrl: 'https://i.pinimg.com/originals/8a/34/48/8a3448467d01b7bcf1eb713b452766f2.jpg', followed: true, fullName: "Sergey", status: 'Coding', location: { city: 'New York', country: 'USA' } },
-    ],
+    users: [ ],
     pageSize: 8,
     totalUsersCount: 50,
-    currentPage: 1
+    currentPage: 1, 
+    isFetching: false
 
 }
 const usersReducer = (state = initialState, action) => {
@@ -46,6 +42,8 @@ const usersReducer = (state = initialState, action) => {
             return { ...state, users: [...action.newUsers], totalUsersCount: action.totalUsersCount }
         case SET_CURRENT_PAGE:
             return { ...state, currentPage: action.currentPage }
+        case TOGGLE_IS_FETCHING:
+            return {...state, isFetching: action.fetching}
         default: return state
     }
 
@@ -59,6 +57,7 @@ export const unfollowAC = (userId) => ({ type: UNFOLLOW, userId });
 export const showMore = () => ({ type: SHOW_MORE })
 export const setUsersAC = (newUsers, totalUsersCount) => ({ type: SET_USERS, newUsers, totalUsersCount })
 export const setCurrentPageAC = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage: currentPage })
+export const toggleIsFetchingAC = (fetching) => ({type: TOGGLE_IS_FETCHING, fetching})
 
 
 export default usersReducer
