@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import { ListItemSecondaryAction } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Pagination from '@material-ui/lab/Pagination';
+import {NavLink} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,8 +57,10 @@ const Users = (props) => {
             {props.users.map((el) => (
               <ListItem key={el.id} divider={true}>
                 <ListItemAvatar className={classes.ListItemAvatar}>
+                  
+                  <NavLink to={`/profile/${el.id}`}>
                   <Avatar src={el.photos.small || null}></Avatar>
-
+                  </NavLink>
                   <Button
                     variant="outlined"
                     size="small"

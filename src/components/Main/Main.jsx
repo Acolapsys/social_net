@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Sidebar from "../Sidebar/Sidebar";
-import Profile from "../Profile/Profile";
+import ProfileContainer from "../Profile/ProfileContainer";
 import styles from "./Main.module.css";
 import DialogsContainer from "../Dialogs/DialogsContainer";
 import News from "../News/News";
@@ -17,7 +17,7 @@ class Main extends Component {
           <div className={styles.main__wrapper}>
             <Sidebar />
             <div className={styles.content}>
-              <Route path="/profile" component={Profile} />
+              <Route path="/profile/:userId?" component={ProfileContainer} />
               <Route path="/dialogs" component={DialogsContainer} />
               <Route path="/users" component={UsersContainer} />
               <Route path="/news" component={News} />

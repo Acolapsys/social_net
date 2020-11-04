@@ -5,4 +5,11 @@
   }
   .content__info {
     font-size: 3.2em;
+    display: flex;
+
+  }
+  
+
+  .content__info p {
+    font-size: 20px;
   }
