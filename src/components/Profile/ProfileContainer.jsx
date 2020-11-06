@@ -30,6 +30,7 @@ const WithUrlRouteContainerComponent = withRouter(ProfileContainer)
 
 const mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
+  
 });
 export default connect(mapStateToProps, {
   setUserProfile,
