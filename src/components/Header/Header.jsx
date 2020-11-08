@@ -7,7 +7,13 @@ const Header = (props) => {
     <div className={styles.header}>
       <div className={styles.logo}>Social Net</div>
       <div className={styles.loginBlock}>
-        {props.data.isAuth ? <span>{props.data.login} <Link to="/login">(Sign out)</Link></span> : <Link to="/login">Login</Link>}
+        {props.data.isAuth ? (
+          <span>
+            {props.data.login} <Link to="/login">(Sign out)</Link>
+          </span>
+        ) : (
+          <Link to="/login">Login</Link>
+        )}
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ class UsersContainer extends React.Component {
 
     axios
       .get(
-        `${usersUrlAPI}?page=${this.props.currentPage}&count=${this.props.pageSize}`
+        `${usersUrlAPI}?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials: true}
       )
       .then((response) => {
         this.props.setUsers(response.data.items, response.data.totalCount);
@@ -34,7 +34,7 @@ class UsersContainer extends React.Component {
     this.props.toggleIsFetching(true)
 
     axios
-      .get(`${usersUrlAPI}?page=${value}&count=${this.props.pageSize}`)
+      .get(`${usersUrlAPI}?page=${value}&count=${this.props.pageSize}`, {withCredentials: true})
       .then((response) => {
         this.props.setUsers(response.data.items, response.data.totalCount);
         this.props.toggleIsFetching(false)
