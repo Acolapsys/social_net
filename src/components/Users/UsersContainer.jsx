@@ -8,23 +8,20 @@ import {
   toggleIsFetching
 } from "../../redux/reducers/usersReducer";
 import React from "react";
-import * as axios from "axios";
 import Users from "./Users";
 import Preloader from '../common/Preloader/Preloader'
+import {getUsers} from '../../api/api'
 
 
-const usersUrlAPI = "https://social-network.samuraijs.com/api/1.0/users";
+
 
 class UsersContainer extends React.Component {
   componentDidMount = () => {
     this.props.toggleIsFetching(true)
 
-    axios
-      .get(
-        `${usersUrlAPI}?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials: true}
-      )
+    getUsers(this.props.currentPage, this.props.pageSize)
       .then((response) => {
-        this.props.setUsers(response.data.items, response.data.totalCount);
+        this.props.setUsers(response.items, response.totalCount);
         this.props.toggleIsFetching(false)
       });
   };
@@ -33,13 +30,13 @@ class UsersContainer extends React.Component {
     this.props.setCurrentPage(value);
     this.props.toggleIsFetching(true)
 
-    axios
-      .get(`${usersUrlAPI}?page=${value}&count=${this.props.pageSize}`, {withCredentials: true})
+    getUsers(value, this.props.pageSize)
       .then((response) => {
-        this.props.setUsers(response.data.items, response.data.totalCount);
+        this.props.setUsers(response.items, response.totalCount);
         this.props.toggleIsFetching(false)
       });
   };
+
 
   render() {
     return (
@@ -67,28 +64,7 @@ const mapStateToProps = (state) => {
     isFetching: state.usersPage.isFetching
   };
 };
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     follow: (userId) => {
-//       dispatch(followAC(userId));
-//     },
-//     unfollow: (userId) => {
-//       dispatch(unfollowAC(userId));
-//     },
-//     showMore: () => {
-//       dispatch(showMore());
-//     },
-//     setUsers: (users, totalUsersCount) => {
-//       return dispatch(setUsersAC(users, totalUsersCount));
-//     },
-//     setCurrentPage: (currentPage) => {
-//       return dispatch(setCurrentPageAC(currentPage));
-//     },
-//     toggleIsFetching: (fetching) => {
-//       return dispatch(toggleIsFetchingAC(fetching))
-//     }
-//   };
-// };
+
 
 export default connect(mapStateToProps, {
   follow,

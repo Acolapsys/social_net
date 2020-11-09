@@ -11,9 +11,8 @@ import { ListItemSecondaryAction } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Pagination from "@material-ui/lab/Pagination";
 import { NavLink } from "react-router-dom";
-import axios from 'axios'
+import { followUser, unfollowUser } from "../../api/api";
 
-const usersUrlAPI = "https://social-network.samuraijs.com/api/1.0/follow/";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -40,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 const Users = (props) => {
   const classes = useStyles();
 
+
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
   return (
@@ -62,6 +62,7 @@ const Users = (props) => {
                   <NavLink to={`/profile/${el.id}`}>
                     <Avatar src={el.photos.small || null}></Avatar>
                   </NavLink>
+                  
                   <Button
                     variant="outlined"
                     size="small"
@@ -70,33 +71,17 @@ const Users = (props) => {
                     onClick={
                       el.followed
                         ? () => {
-                            axios
-                              .delete(
-                                `${usersUrlAPI}${el.id}`,
-                                { headers: {
-                                  'API-KEY': 'fcde1215-befa-4c9d-b8b6-ed231146228e'
-                                },
-                                  withCredentials: true }
-                              )
+                          unfollowUser(el.id)
                               .then((response) => {
-                                if (response.data.resultCode === 0) {
+                                if (response.resultCode === 0) {
                                   props.unfollow(el.id);
                                 }
                               });
                           }
                         : () => {
-                          axios
-                          .post(
-                            `${usersUrlAPI}${el.id}`,
-                            {},
-                            { headers: {
-                              'API-KEY': 'fcde1215-befa-4c9d-b8b6-ed231146228e'
-                            },
-                             withCredentials: true }
-                            
-                          )
+                          followUser(el.id)
                           .then((response) => {
-                            if (response.data.resultCode === 0) {
+                            if (response.resultCode === 0) {
                               props.follow(el.id);
                             }
                           });
